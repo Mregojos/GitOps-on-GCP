@@ -6,8 +6,6 @@
 rm -f ./.env.*
 rm -f ./*/.env.*
 rm -f ./*/*/.env.*
-rm -f ./*/*/*/.env.*
-rm -f ./*/*/*/*/.env.*
 rm -rf .ipynb_checkpoints
 rm -rf ./*/.ipynb_checkpoints
 rm -rf ./*/*/.ipynb_checkpoints
