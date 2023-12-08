@@ -1,7 +1,7 @@
 #---------Application Name Environment Variables----------#
 # In production, change these values.
 export VERSION="i"
-export APP_NAME="app-GitOps-$VERSION"
+export APP_NAME="app-gitops-$VERSION"
 export DB_PASSWORD="password"
 export ADMIN_PASSWORD="password"
 export SPECIAL_NAME="guest"
