@@ -1,1 +1,1 @@
-# GitOps-on-GCP
+# GitOps on GCP
