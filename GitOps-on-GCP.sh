@@ -32,30 +32,14 @@ docker logout
 
 # Deploy locally (kubectl)
 # Create app.yaml manifest
-cat > manifest/app.yaml << EOF
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: app-deployment
-  labels: 
-    app: app
-spec:
-  replicas: 3
-  selector: 
-    matchLabels:
-      app: app
-  template:
-    metadata: 
-      labels:
-        app: app
-    spec:
-      containers:
-      - name: app
-        image: $DOCKER_USERNAME/app:latest
-        ports:
-        - containerPort: 9000
-EOF
+cd manifest
+sh app.sh
+cd ..
 
+# Create a firewall
+gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-local \
+    --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9000 --source-ranges=0.0.0.0/0
+    
 # Create app namespace
 kubectl create namespace app
 # Apply deployment
@@ -65,11 +49,9 @@ watch kubectl get all -n app
 kubectl expose deployment.apps/app-deployment -n app
 kubectl get all -n app
 kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n app
+# Go to <IP>:9000
 kubectl get pods -n app
-
-# Create a firewall
-gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-local \
-    --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9000 --source-ranges=0.0.0.0/0
+    
 
 ########## Cleanup GitOps
 rm -rf manifest/app.yaml

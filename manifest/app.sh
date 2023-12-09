@@ -1,8 +1,8 @@
-cat > manifest/app.yaml << EOF
+cat > app.yaml << EOF
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deploynment
+  name: app-deployment
   labels: 
     app: app
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: <DOCKER_USERNAME>/app:latest
+        image: $DOCKER_USERNAME/app:latest
         ports:
         - containerPort: 9000
 EOF
