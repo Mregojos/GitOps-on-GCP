@@ -1,0 +1,2 @@
+echo "USERNAME:"
+read -s DOCKER_USERNAME
