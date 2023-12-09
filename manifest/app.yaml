@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels: 
+    app: app
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: app
+  template:
+    metadata: 
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: mattregojos/app:latest
+        ports:
+        - containerPort: 9000
+        env:
+        - name: DB_NAME
+          value: 'app-gitops-ii-admin'
+        - name: DB_USER
+          value: 'app-gitops-ii-admin'
+        - name: DB_HOST
+          value: '35.230.113.199'
+        - name: DB_PORT
+          value: '5000'
+        - name: DB_PASSWORD
+          value: 'password'
+        - name: PROJECT_NAME
+          value: 'mattsreprojects'
+        - name: ADMIN_PASSWORD
+          value: 'password'
+        - name: APP_PORT
+          value: '9000'
+        - name: APP_ADDRESS
+          value: ''
+        - name: DOMAIN_NAME
+          value: ''
+        - name: SPECIAL_NAME
+          value: 'guest'

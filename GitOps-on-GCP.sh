@@ -77,6 +77,7 @@ kubectl delete namespace app
 # Create Apps Via CLI
 kubectl config set-context --current --namespace=argocd
 argocd app create app --repo https://github.com/mregojos/GitOps-on-GCP.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace default
+
 # or Create Apps Via UI
 
 
