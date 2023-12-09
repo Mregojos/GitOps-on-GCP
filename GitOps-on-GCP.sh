@@ -73,6 +73,25 @@ kubectl get pods -n app
 # Delete namespace
 kubectl delete namespace app
 
+# Deploy locally (kubectl)
+# Create app.yaml manifest with secrets
+cd manifest
+sh app-secrets.sh
+cd ..
+# Create app namespace
+kubectl create namespace app
+# Apply deployment
+kubectl apply -f manifest/app.yaml -n app
+kubectl get all -n app
+watch kubectl get all -n app
+kubectl expose deployment.apps/app-deployment -n app
+kubectl get all -n app
+kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n app
+# Go to <IP>:9000
+kubectl get pods -n app
+# Delete namespace
+kubectl delete namespace app
+
 # GitOps App
 # Create an application from a git repository
 # Create Apps Via CLI
@@ -92,6 +111,8 @@ kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n defau
 argocd app delete app -y
 
 # or Create Apps Via UI
+
+
 
 
 
