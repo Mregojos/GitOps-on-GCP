@@ -10,9 +10,11 @@ export DOCKER_USERNAME=$DOCKER_USERNAME
 sh infra*
 
 # kubectl and minikube
+sh kubectl-minikube.sh
+
 sh GitOps.sh
 
-# Build the image and ush to the repository
+# Build the image and push to the hub
 cd app
 docker build -t $DOCKER_USERNAME/app .
 cd ..
@@ -33,7 +35,7 @@ sh app.sh
 cd ..
 
 # Create a firewall
-gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-local \
+gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-gitops \
     --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9000 --source-ranges=0.0.0.0/0
     
 # Create app namespace
@@ -56,4 +58,4 @@ kubectl delete namespace app
 ########## Cleanup GitOps
 
 rm -rf manifest/app.yaml
-gcloud compute firewall-rules delete $FIREWALL_RULES_NAME-local --quiet 
+gcloud compute firewall-rules delete $FIREWALL_RULES_NAME-gitops --quiet 

@@ -115,7 +115,7 @@ echo "\n #----------App Service Account has been successfully binded.----------#
 DB_HOST=$(gcloud compute instances list --filter="name=$DB_INSTANCE_NAME" --format="value(networkInterfaces[0].accessConfigs[0].natIP)") 
 
 # Environment Variables for the app
-echo """
+cat > .env.yaml << EOF
 DB_NAME:
     '$DB_NAME'
 DB_USER:
@@ -138,7 +138,7 @@ DOMAIN_NAME:
     '$DOMAIN_NAME'
 SPECIAL_NAME:
     '$SPECIAL_NAME'
-""" > .env.yaml
+EOF
 
 
 # Deploy the app using Cloud Run

@@ -68,6 +68,11 @@ if gcloud compute firewall-rules list --filter="name=$FIREWALL_RULES_NAME-dev" -
     # echo "$FIREWALL_RULES_NAME-dev Firewall Rule doesn't exist." 
 fi
 
-echo "\n #----------Services and Resources have been Successfully deleted.----------# \n"
+# GitOps Cleanup
+rm -rf manifest/app.yaml
+# For GitOps Firewall Rule
+if gcloud compute firewall-rules list --filter="name=$FIREWALL_RULES_NAME-gitops" --format="table(name)" | grep -q $FIREWALL_RULES_NAME-gitops; then
+    gcloud compute firewall-rules delete $FIREWALL_RULES_NAME-gitops --quiet 
+fi
 
 echo "\n #----------DONE----------# \n"

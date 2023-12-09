@@ -1,7 +1,7 @@
 # Environment
 # TO DO: In production, change the values to be more secure. 
-export VERSION="i"
-export APP_NAME="app-gitops-i"
+export VERSION="ii"
+export APP_NAME="app-gitops-ii"
 export DB_PASSWORD="password"
 
 export DB_CONTAINER_NAME="$APP_NAME-sql"
