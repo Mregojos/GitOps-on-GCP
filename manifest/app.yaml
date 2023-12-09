@@ -18,4 +18,4 @@ spec:
       - name: app
         image: <APP>:latest
         ports:
-        - containerPort: 8501
+        - containerPort: 9000
