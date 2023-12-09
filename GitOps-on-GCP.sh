@@ -73,13 +73,15 @@ kubectl get pods -n app
 # Delete namespace
 kubectl delete namespace app
 
+
 # Deploy locally (kubectl)
 # Create app.yaml manifest with secrets
+kubectl delete namespace app
+# Create app namespace
+kubectl create namespace app
 cd manifest
 sh app-secrets.sh
 cd ..
-# Create app namespace
-kubectl create namespace app
 # Apply deployment
 kubectl apply -f manifest/app.yaml -n app
 kubectl get all -n app
