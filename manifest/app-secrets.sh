@@ -83,5 +83,5 @@ kubectl delete secret my-secret
 kubectl create secret generic my-secret --from-literal=DB_NAME=$DB_NAME --from-literal=DB_USER=$DB_USER --from-literal=DB_HOST=$DB_HOST --from-literal=DB_PORT=$DB_PORT  \
     --from-literal=DB_PASSWORD=$DB_PASSWORD --from-literal=PROJECT_NAME=$PROJECT_NAME --from-literal=ADMIN_PASSWORD=$ADMIN_PASSWORD \
     --from-literal=APP_PORT=$APP_PORT --from-literal=APP_ADDRESS=$APP_ADDRESS --from-literal=DOMAIN_NAME=$DOMAIN_NAME --from-literal=SPECIAL_NAME=$SPECIAL_NAME
-kubectl get secret my-seret -o yaml
+kubectl get secret my-secret -o yaml
 
