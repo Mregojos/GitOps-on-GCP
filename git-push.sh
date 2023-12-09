@@ -9,6 +9,9 @@ rm -f ./*/*/.env.*
 rm -rf .ipynb_checkpoints
 rm -rf ./*/.ipynb_checkpoints
 rm -rf ./*/*/.ipynb_checkpoints
+rm -f ./app.yaml
+rm -f ./*/app.yaml
+rm -f ./*/*/app.yaml
 echo "Successfully removed .env.* and checkpoints files ready to be pushed to repository."
 
 git add .
