@@ -17,6 +17,10 @@ spec:
     spec:
       containers:
       - name: app
+        valueFrom:
+          secretKeyRef: 
+            name: my-secret
+            key: DB_NAME
         image: $DOCKER_USERNAME/app:latest
         ports:
         - containerPort: 9000
