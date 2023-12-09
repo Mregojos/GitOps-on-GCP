@@ -12,7 +12,26 @@ sh infra*
 # kubectl and minikube
 sh kubectl-minikube.sh
 
+# GitOps
 sh GitOps.sh
+# kubectl get namespaces
+# cat ~/.kube/config
+# Access The Argo CD API Server
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+# Run in another terminal
+kubectl port-forward svc/argocd-server -n argocd 8000:443 --address 0.0.0.0
+argocd admin initial-password -n argocd
+# USERNAME: ADMIN
+# PASSWORD: <argocd admin initial-password -n argocd> #password
+# You can change it using the UI
+# argocd login <ARGOCD_SERVER>
+# argocd account update-password
+# Create an application from a git repository
+# Create Apps Via CLI
+# kubectl config set-context --current --namespace=argocd
+# argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
+# Create Apps Via UI
+
 
 # Build the image and push to the hub
 cd app
