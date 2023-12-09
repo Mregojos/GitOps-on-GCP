@@ -1,16 +1,12 @@
 # GitOps
 
 # GitOps Environment Variables
+source env*
 echo "USERNAME:"
 read -s DOCKER_USERNAME
 export DOCKER_USERNAME=$DOCKER_USERNAME
-export VERSION="i"
-export APP_NAME="app-gitops-$VERSION"
-export FIREWALL_RULES_NAME="$APP_NAME-ports"
-
 
 # Infrastructure
-source env*
 sh infra*
 
 # kubectl and minikube
@@ -52,7 +48,12 @@ kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n app
 # Go to <IP>:9000
 kubectl get pods -n app
     
+# Delete namespace
+kubectl delete namespace app
+
+
 
 ########## Cleanup GitOps
+
 rm -rf manifest/app.yaml
 gcloud compute firewall-rules delete $FIREWALL_RULES_NAME-local --quiet 
