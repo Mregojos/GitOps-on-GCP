@@ -28,7 +28,7 @@ spec:
         - name: DB_HOST
           value: '$DB_HOST'
         - name: DB_PORT
-          value:'$DB_PORT'
+          value: '$DB_PORT'
         - name: DB_PASSWORD
           value: '$DB_PASSWORD'
         - name: PROJECT_NAME
@@ -40,8 +40,6 @@ spec:
         - name: APP_ADDRESS
           value: '$APP_ADDRESS'
         - name: DOMAIN_NAME
-          value: '$DOMAIN_NAME'
-        - name: SPECIAL_NAME
           value: '$DOMAIN_NAME'
         - name: SPECIAL_NAME
           value: '$SPECIAL_NAME'
