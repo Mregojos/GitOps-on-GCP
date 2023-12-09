@@ -12,6 +12,10 @@ sh infra*
 # kubectl and minikube
 sh kubectl-minikube.sh
 
+# Create a firewall
+gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-gitops \
+    --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9000,tcp:8000 --source-ranges=0.0.0.0/0
+
 # GitOps
 sh GitOps.sh
 # kubectl get namespaces
@@ -24,7 +28,7 @@ argocd admin initial-password -n argocd
 # USERNAME: admin
 # PASSWORD: <argocd admin initial-password -n argocd> #password
 # You can change it using the UI
-# argocd login <ARGOCD_SERVER>:PORT # Make sure to port-forward first
+# argocd login <ARGOCD_SERVER>:PORT
 # argocd account update-password
 # New password: p@ssword
 
@@ -56,9 +60,7 @@ cd manifest
 sh app.sh
 cd ..
 
-# Create a firewall
-gcloud compute --project=$(gcloud config get project) firewall-rules create $FIREWALL_RULES_NAME-gitops \
-    --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:9000,tcp:8000 --source-ranges=0.0.0.0/0
+
     
 # Create app namespace
 kubectl create namespace app
