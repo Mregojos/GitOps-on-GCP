@@ -40,6 +40,11 @@ spec:
             secretKeyRef: 
               name: my-secret
               key: DB_PORT
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: my-secret
+              key: DB_PASSWORD
         - name: PROJECT_NAME
           valueFrom:
             secretKeyRef: 
