@@ -80,14 +80,14 @@ kubectl delete namespace app
 cd manifest
 sh app.sh
 cd ..
-# Add comment tags in git-push and add after
+# Remove comment tags in git-push and add after
 kubectl port-forward svc/argocd-server -n argocd 8000:443 --address 0.0.0.0
 kubectl config set-context --current --namespace=argocd
-argocd app create app --repo https://github.com/mregojos/GitOps-on-GCP.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace app
-watch kubectl get all -n app
-kubectl expose deployment.apps/app-deployment -n app
-kubectl get all -n app
-kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n app
+argocd app create app --repo https://github.com/mregojos/GitOps-on-GCP.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace default
+watch kubectl get all -n default
+kubectl expose deployment.apps/app-deployment -n default
+kubectl get all -n default
+kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n default
 # Delete App
 argocd app delete app
 
