@@ -36,7 +36,7 @@ argocd admin initial-password -n argocd
 # Create Apps Via CLI
 # kubectl config set-context --current --namespace=argocd
 # argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
-
+# argocd app create app --repo https://github.com/mregojos/GitOps-on-GCP.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace default
 # or Create Apps Via UI
 
 
@@ -59,9 +59,6 @@ docker logout
 cd manifest
 sh app.sh
 cd ..
-
-
-    
 # Create app namespace
 kubectl create namespace app
 # Apply deployment
@@ -73,10 +70,14 @@ kubectl get all -n app
 kubectl port-forward service/app-deployment 9000:9000 --address 0.0.0.0 -n app
 # Go to <IP>:9000
 kubectl get pods -n app
-    
 # Delete namespace
 kubectl delete namespace app
 
+# Create an application from a git repository
+# Create Apps Via CLI
+kubectl config set-context --current --namespace=argocd
+argocd app create app --repo https://github.com/mregojos/GitOps-on-GCP.git --path manifest --dest-server https://kubernetes.default.svc --dest-namespace default
+# or Create Apps Via UI
 
 
 ########## Cleanup GitOps
